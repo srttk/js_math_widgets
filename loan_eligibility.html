@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="http://hitechbuildersin.com/demo/js/jquery-1.6.3.min.js"></script>
+</head>
+<body>
+	<form>
+		<table>
+			<tr><td>Monthly Repayment</td><td><input type="text" onkeypress="return checkIt(event)" id="repay"/></td></tr>
+			<tr><td>Repayment Period</td><td><input type="text" onkeypress="return checkIt(event)" id="period"/></td></tr>
+			<tr><td>Interest rate</td><td><input type="text" onkeypress="return checkIt(event)" id="interest"/></td></tr>
+			<tr><td>Eligible loan amount</td><td><span id="eligibleamount"></span></td></tr>
+			<tr><td></td><td><input id="calc_el" onclick="LoanEligibility();" type="button" value="Calculate"></td></tr>
+
+		</table>
+	</form>
+</body>
+<script type="text/javascript">
+	function LoanEligibility(){
+	var Monthly=$("#repay").val();
+	Monthly = Monthly * 1;
+	var period = $("#period").val();
+	var Ten2 = period * 12;
+	
+	var Int = $("#interest").val();
+	var err;
+	if(Monthly=='') {
+			//alert("Enter Monthly repayment amount");
+			form.repay.focus()
+	}
+	Int = Int * 1;
+	
+	var Pclean = Monthly * 1;
+	
+	var a = (Int/1200);
+	a = a * 1;
+	
+	var b = 1 + a;
+	b = b * 1;
+	
+	var c = (1/b);
+	c = c * 1;
+	
+	var d = Math.pow( c, Ten2);
+	d = d * 1;
+	
+	var e = 1 - d;
+	e = e * 1;
+	
+	var f = (1200/Int);
+	f = f * 1;
+	
+	var g = e * f;
+	g = g * 1;
+	
+	var eligible = Monthly * g;
+	eligible = eligible * 1;
+	eligible = Math.round(eligible);
+	if(Monthly!='' && period !='' && Int !='' )
+		$("#eligibleamount").text(eligible);
+}
+</script>
+</html>

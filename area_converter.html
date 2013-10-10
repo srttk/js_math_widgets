@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="http://hitechbuildersin.com/demo/js/jquery-1.6.3.min.js"></script>
+
+</head>
+<script type="text/javascript">
+	function  area_c(){
+				var count = 20;
+				var factor = new Array();
+				factor[1]=1; 			//sq.ft
+				factor[2]=0.0930000000000000000;//sq.mts
+				//factor[3]=0.1111111111111000000;//sq.yards
+				factor[3]=0.0000229566300000000;//acres
+				//factor[5]=0.0000092904166000000;//hectares
+				factor[4]= 0.00041666667000000;//ground
+				factor[5]= 0.00229600000000000;//cent
+			
+				var element =  new Array();
+				element[1]= $("#sqft").val();
+				element[2]= $("#sqmt").val();
+				//element[3]= document.forms["area_conv"].elements["sqyd"].value;
+				element[3]=$("#acre").val();
+				//element[5]= document.forms["area_conv"].elements["hectare"].value;
+				element[4]=$("#ground").val();
+				element[5]= $("#cent").val();
+						
+				var firstvalue =0, position =0, nullcount=0;
+				for (var i=1; i <= count; i++) {
+						if(element[i] != null && element[i].length!=0) {
+							if(i==1 && element[2]!="") var parsecheck=""+parseFloat(element[i]);
+							if(parseFloat(element[i])==0 || parsecheck=="NaN") window.alert("Enter a Number");
+							firstvalue=element[i]/factor[i];
+							position= i;
+							value=element[i];
+							break;
+						}
+						else nullcount=nullcount+1;
+
+						if (nullcount==count) {
+							//window.alert("Please enter any value.");
+							return;
+						}
+				}
+				if (firstvalue==0) {
+					clearForm1(area_conv);
+				}
+				$("#sqft").val(firstvalue*factor[1]);
+				$("#sqmt").val(firstvalue*factor[2]);
+				//document.forms["area_conv"].elements["sqyd"].value=firstvalue*factor[3];
+				$("#acre").val(firstvalue*factor[3]);
+				//document.forms["area_conv"].elements["hectare"].value=firstvalue*factor[5];
+				$("#ground").val(firstvalue*factor[4]);
+				$("#cent").val(firstvalue*factor[5]);
+			
+				if($("#sqft").val()<0.00000001) $("#sqft").val("0");
+				if($("#sqmt").val()<0.00000001) $("#sqmt").val("0");
+				//if(document.forms["area_conv"].elements["sqyd"].value<0.00000001) document.forms["area_conv"].elements["sqyd"].value="0";
+				if($("#acre").val()<0.00000001) $("#acre").val("0");
+				//if(document.forms["area_conv"].elements["hectare"].value<0.00000001) document.forms["area_conv"].elements["hectare"].value="0";
+				if($("#ground").val()<0.00000001) $("#ground").val("0");
+				if($("#sqft").val()>9999999999) $("#sqft").val("-");
+				if($("#sqmt").val()>9999999999) $("#sqmt").val("-");
+				//if(document.forms["area_conv"].elements["sqyd"].value>9999999999) document.forms["area_conv"].elements["sqyd"].value="-";
+				if($("#acre").val()>9999999999) $("#acre").val("-");
+				//if(document.forms["area_conv"].elements["hectare"].value>9999999999) document.forms["area_conv"].elements["hectare"].value="-";
+				if($("#ground").val()>9999999999) $("#ground").val("-");
+				if($("#cent").val()>9999999999) $("#cent").val("-");
+}
+</script>
+<body>
+<form>
+		<table>
+			<tr><td>Square Fee</td><td><input type="text" onkeypress="return checkIt(event)" id="sqft"/></td></tr>
+			<tr><td>Square Meter</td><td><input type="text" onkeypress="return checkIt(event)" id="sqmt"/></td></tr>
+			<tr><td>Acres</td><td><input type="text" onkeypress="return checkIt(event)" id="acre"/></td></tr>
+			<tr><td>Acres</td><td><input type="text" onkeypress="return checkIt(event)" id="ground"/></td></tr>
+			<tr><td>Grounds</td><td><input type="text" onkeypress="return checkIt(event)" id="cent"/></td></tr>
+			<tr><td>Cents</td><td><span id="eligibleamount"></span></td></tr>
+			<tr><td></td><td><input id="calc_el" onclick="area_c();" type="button" value="Calculate"></td></tr>
+
+		</table>
+	</form>
+	<script type="text/javascript">
+	function  area_c(){
+				var count = 20;
+				var factor = new Array();
+				factor[1]=1; 			//sq.ft
+				factor[2]=0.0930000000000000000;//sq.mts
+				//factor[3]=0.1111111111111000000;//sq.yards
+				factor[3]=0.0000229566300000000;//acres
+				//factor[5]=0.0000092904166000000;//hectares
+				factor[4]= 0.00041666667000000;//ground
+				factor[5]= 0.00229600000000000;//cent
+			
+				var element =  new Array();
+				element[1]= $("#sqft").val();
+				element[2]= $("#sqmt").val();
+				//element[3]= document.forms["area_conv"].elements["sqyd"].value;
+				element[3]=$("#acre").val();
+				//element[5]= document.forms["area_conv"].elements["hectare"].value;
+				element[4]=$("#ground").val();
+				element[5]= $("#cent").val();
+						
+				var firstvalue =0, position =0, nullcount=0;
+				for (var i=1; i <= count; i++) {
+						if(element[i] != null && element[i].length!=0) {
+							if(i==1 && element[2]!="") var parsecheck=""+parseFloat(element[i]);
+							if(parseFloat(element[i])==0 || parsecheck=="NaN") window.alert("Enter a Number");
+							firstvalue=element[i]/factor[i];
+							position= i;
+							value=element[i];
+							break;
+						}
+						else nullcount=nullcount+1;
+
+						if (nullcount==count) {
+							//window.alert("Please enter any value.");
+							return;
+						}
+				}
+				if (firstvalue==0) {
+					clearForm1(area_conv);
+				}
+				$("#sqft").val(firstvalue*factor[1]);
+				$("#sqmt").val(firstvalue*factor[2]);
+				//document.forms["area_conv"].elements["sqyd"].value=firstvalue*factor[3];
+				$("#acre").val(firstvalue*factor[3]);
+				//document.forms["area_conv"].elements["hectare"].value=firstvalue*factor[5];
+				$("#ground").val(firstvalue*factor[4]);
+				$("#cent").val(firstvalue*factor[5]);
+			
+				if($("#sqft").val()<0.00000001) $("#sqft").val("0");
+				if($("#sqmt").val()<0.00000001) $("#sqmt").val("0");
+				//if(document.forms["area_conv"].elements["sqyd"].value<0.00000001) document.forms["area_conv"].elements["sqyd"].value="0";
+				if($("#acre").val()<0.00000001) $("#acre").val("0");
+				//if(document.forms["area_conv"].elements["hectare"].value<0.00000001) document.forms["area_conv"].elements["hectare"].value="0";
+				if($("#ground").val()<0.00000001) $("#ground").val("0");
+				if($("#sqft").val()>9999999999) $("#sqft").val("-");
+				if($("#sqmt").val()>9999999999) $("#sqmt").val("-");
+				//if(document.forms["area_conv"].elements["sqyd"].value>9999999999) document.forms["area_conv"].elements["sqyd"].value="-";
+				if($("#acre").val()>9999999999) $("#acre").val("-");
+				//if(document.forms["area_conv"].elements["hectare"].value>9999999999) document.forms["area_conv"].elements["hectare"].value="-";
+				if($("#ground").val()>9999999999) $("#ground").val("-");
+				if($("#cent").val()>9999999999) $("#cent").val("-");
+}
+</script>
+</body>
+
+	<script type="text/javascript">
+		function checkIt(evt) {
+		    evt = (evt) ? evt : window.event
+		    var charCode = (evt.which) ? evt.which : evt.keyCode
+		    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+		        status = "This field accepts numbers only."
+		        return false
+		    }
+		    status = ""
+		    return true
+		}
+	</script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Emi</title>
+	<script type="text/javascript" src="http://hitechbuildersin.com/demo/js/jquery-1.6.3.min.js"></script>
+</head>
+<body>	
+	<form>
+		<table>
+			<tr><td>Amount</td><td><input type="text" onkeypress="return checkIt(event)" id="amt"/></td></tr>
+			<tr><td>Annual interest rate</td><td><input type="text" onkeypress="return checkIt(event)" id="ir"/></td></tr>
+			<tr><td>Loan period in years</td><td><input type="text" onkeypress="return checkIt(event)" id="lp"/></td></tr>
+			<tr><td>EMI</td><td><span id="cemi"></span></td></tr>
+			<tr><td></td><td><input id="calc" type="button" value="Calculate"></td></tr>
+
+		</table>
+	</form>
+
+	<script type="text/javascript">
+		$(function(){
+			$('#calc').click(function(){
+				//alert("fdf");
+				var amount=$('#amt').val();
+				var interest_rate=$('#ir').val();
+				var period=$('#lp').val();
+				period=period*12;
+				var interest=parseFloat(interest_rate/100);
+				var x;
+				var y;
+				var z;
+
+				y=1/(1+interest*1/period);
+				x=(Math.pow(y,period)-1)/(y-1)*y;
+				z=amount/x/1;
+				z=Math.round(z);
+				$("#cemi").text(z);
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		function checkIt(evt) {
+		    evt = (evt) ? evt : window.event
+		    var charCode = (evt.which) ? evt.which : evt.keyCode
+		    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+		        status = "This field accepts numbers only."
+		        return false
+		    }
+		    status = ""
+		    return true
+		}
+	</script>
+</body>
+</html>
